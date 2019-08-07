@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FormulaEvaluatorTest {
 
-  MathContext mathContext = new MathContext(2, RoundingMode.HALF_DOWN);
+  MathContext mathContext = new MathContext(6, RoundingMode.HALF_DOWN);
 
   @Test
   public void evaluateFormulaWithAdditionMultiplication() {
@@ -28,8 +28,16 @@ class FormulaEvaluatorTest {
     variables.put("x", .3d);
     variables.put("n", 10d);
 
-
     assertEquals(new BigDecimal(3.30d, mathContext).setScale(2), FormulaEvaluator.evaluate("({x}*{n})+{x}", variables));
+  }
+
+  @Test
+  public void evaluateFormulaWithPercentage() {
+    Map<String, Double> variables = new HashMap<>();
+    variables.put("p", 1.5d);
+    variables.put("a", 1000d);
+
+    assertEquals(new BigDecimal(15.00d, mathContext).setScale(2), FormulaEvaluator.evaluate("({p}/100)*{a}", variables));
 
   }
 }
