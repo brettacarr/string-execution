@@ -5,7 +5,7 @@ public class FormulaInterpolation {
     String result = formula;
     for (String key : variables.keySet()) {
       Double value = variables.get(key);
-      result = result.replace("{"+key+"}", value.toString());
+      result = result.replaceAll("\\{"+key+"\\}", value.toString());
     }
     return result;
   }
