@@ -13,6 +13,7 @@ class FormulaEvaluatorTest {
     Map<String, Double> variables = new HashMap<>();
     variables.put("x", 1d);
     variables.put("y", 2d);
+
     assertEquals(new BigDecimal(30.00).setScale(2), FormulaEvaluator.evaluate("({x}+{y})*10", variables));
 
   }
